@@ -1,0 +1,32 @@
+[
+  {
+    "name": "general_solar",
+    "birth_input": {
+      "calendar": "solar",
+      "birth_datetime": "1990-10-10T14:30:00+09:00",
+      "timezone": "Asia/Seoul"
+    },
+    "expected": {
+      "normalized_birth_datetime": "1990-10-10T14:30:00+09:00",
+      "day_master": "Gap",
+      "year_pillar": {"stem": "Gyeong", "branch": "O"},
+      "month_pillar": {"stem": "Byeong", "branch": "Sul"},
+      "day_pillar": {"stem": "Gap", "branch": "Ja"}
+    }
+  },
+  {
+    "name": "lunar_conversion",
+    "birth_input": {
+      "calendar": "lunar",
+      "birth_datetime": "2023-11-20T10:30:00+09:00",
+      "timezone": "Asia/Seoul"
+    },
+    "expected": {
+      "normalized_birth_datetime": "2024-01-01T10:30:00+09:00",
+      "day_master": "Gyeong",
+      "year_pillar": {"stem": "Gye", "branch": "Myo"},
+      "month_pillar": {"stem": "Gap", "branch": "Ja"},
+      "day_pillar": {"stem": "Gyeong", "branch": "Jin"}
+    }
+  }
+]

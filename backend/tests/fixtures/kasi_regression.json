@@ -1,0 +1,23 @@
+{
+  "solar_to_lunar_examples": [
+    {
+      "solar_date": "2024-01-01",
+      "lunar_year": 2023,
+      "lunar_month": 11,
+      "lunar_day": 20,
+      "leap_month": false
+    }
+  ],
+  "solar_term_examples": [
+    {
+      "label": "ipchun_2026",
+      "year": 2026,
+      "target_longitude": 315.0
+    },
+    {
+      "label": "cheongmyeong_2026",
+      "year": 2026,
+      "target_longitude": 15.0
+    }
+  ]
+}
