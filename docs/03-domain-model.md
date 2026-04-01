@@ -14,6 +14,7 @@
 | `apply_local_mean_time` | boolean | No | default `false` |
 | `early_zi_time` | boolean | No | default `false` |
 | `gender` | string | No | optional explanatory feature |
+| `school_profile` | `orthodox \| modern_korean \| conservative \| practical` | No | default `modern_korean` |
 
 ### ChartCore
 
@@ -72,7 +73,7 @@
 | `confidence` | float | 0.0..1.0 |
 | `importance` | int | 0..100 |
 | `tradeoff` | object | gains and losses by choice |
-| `evidence_refs` | array | mandatory evidence list |
+| `evidence_refs` | array | mandatory evidence list (categorized as `rule_ref`, `kb_ref`, `case_ref`) |
 
 ### SimulationRun
 
@@ -119,7 +120,7 @@
 ## Invariants
 
 - `ChartCore.policy_snapshot` is immutable after chart compilation.
-- Every `EventCandidate` must have at least one `evidence_ref`.
+- Every `EventCandidate` must have at least one `rule_ref` and one non-rule source (`kb_ref` or `case_ref`).
 - `SimulationRun.seed` is required for all baseline and branch runs.
 - `BranchOutcome.probability_weight` is comparative and not an absolute future probability.
 - Narrative output cannot contain fields absent from event, state, or evidence sources.

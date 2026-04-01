@@ -82,14 +82,40 @@ Rounded to two decimals and clamped to `0.0..1.0`.
 
 ## Evidence References
 
+### Source Type Taxonomy
+
+Evidence는 3개 대분류(category)와 세부 source_type으로 구분한다.
+
+| Category | source_type | 설명 | 예시 |
+| --- | --- | --- | --- |
+| `rule_ref` | `rule`, `timeline`, `feature`, `state` | 형식화된 룰 엔진 규칙 및 계산 결과 | `rule:R-035`, `feature:element_clash` |
+| `kb_ref` | `classic`, `modern`, `academic` | 고전/현대 문헌, 학술 자료, RAG 검색 결과 | `classic:적천수-용신편`, `modern:KR-실전사주-ch7` |
+| `case_ref` | `backtest`, `pattern`, `archetype` | 유사 사례, 백테스트 패턴, 원형 사례 | `backtest:C-1203`, `pattern:career_move_after_clash` |
+
+### Record Structure
+
 An `evidence_ref` record must contain:
 
-- `ref_id`
-- `source_type` such as `rule`, `timeline`, `feature`, `state`
-- `source_key`
-- `summary`
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `ref_id` | string | Yes | unique within run |
+| `category` | `rule_ref \| kb_ref \| case_ref` | Yes | evidence 대분류 |
+| `source_type` | string | Yes | category 내 세부 유형 |
+| `source_key` | string | Yes | 구체적 출처 식별자 |
+| `summary` | string | Yes | 1~2문장 요약 |
+| `confidence_weight` | float | No | 0.0~1.0, 해당 근거의 신뢰도 가중치 |
 
-Every accepted event must include at least one rule source and one non-rule source.
+### Minimum Evidence Requirements
+
+Every accepted event must include:
+
+- **최소 1개 `rule_ref`** — 룰 엔진 계산 근거 필수
+- **최소 1개 non-rule source** — `kb_ref` 또는 `case_ref` 중 하나 이상
+- `kb_ref`와 `case_ref`가 모두 있으면 evidence density 보너스 적용
+
+### Mixing Rule
+
+동일 이벤트의 evidence_refs 내에서 category가 섞이지 않도록 그룹핑한다. Judge는 category별로 근거를 분리 평가한다.
 
 ## Tradeoff Contract
 

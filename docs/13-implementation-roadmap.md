@@ -23,10 +23,11 @@
 
 ### Phase 3: Explanation Core
 
-1. Evidence layer
-2. Debate orchestration
-3. Judge ranking
-4. Narrative generation
+1. Evidence layer (3종 분류: rule_ref / kb_ref / case_ref)
+2. Knowledge Retrieval (RAG) — Gemini Embedding 2 기반 문헌/사례 검색
+3. Debate orchestration (adaptive scaling: simple/moderate/complex tier)
+4. Judge ranking
+5. Narrative generation
 
 ### Phase 4: Service Layer
 
@@ -35,12 +36,21 @@
 3. Storage integration
 4. Report retrieval
 
-## Review Gates
+### Phase 5: Advanced Agent (Future)
+
+1. 계층형 팀 구조 (도메인별 팀 + Leader/Worker 분화)
+2. 학파별 프로파일 다중 실행 및 consensus/divergence 비교
+3. Knowledge Base 확장 (고전 원전, 사례 DB 대규모 인덱싱)
+
+## Review Gates (Updated)
 
 - Gate 1: chart engine matches golden fixtures
 - Gate 2: simulation replay is deterministic
-- Gate 3: debate messages are evidence-grounded
+- Gate 2.5: school_profile 변경 시 FeatureVector 차이 검증
+- Gate 3: debate messages are evidence-grounded (3종 category 포함)
+- Gate 3.5: RAG 검색 결과가 evidence_refs에 정확히 연결됨
 - Gate 4: narrative output passes grounding checks
+- Gate 5: 팀 구조 도입 시 플랫 구조 대비 품질 향상 검증
 
 ## Out of Scope for First Implementation Pass
 
